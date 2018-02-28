@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <link href="Stylesheet.css" type="text/css" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebsocketTest</title>
+</head>
+
+<body class="page">
+    <div class="main">
+        <h1>Skrive noget til serveren</h1>
+        <input id="InputText" type="Text">
+        <button onclick="sendTextToServer()">send</button>
+        </div>
+</body>
+<script>
+    function sendTextToServer(){
+        var message = document.getElementById('InputText').value;
+        document.getElementById('InputText').value = '';
+        console.log('Sender: ' + message);
+        ws.send(message);    
+    }
+    
+    var ws = new WebSocket('ws://localhost:8025/ws/hello');
+    
+    ws.onopen = function (event) {
+        console.log("connection is ON")
+    };
+    
+    //handle incomming
+    ws.onmessage = function (message){
+        console.log('You got mail: '+ message.data)
+    }
+    ws.close = function(){
+        console.log('Disconnected');
+    }
+    ws.onerror = function(){
+        console.log('An error has accured');
+    }
+</script>
+</html>

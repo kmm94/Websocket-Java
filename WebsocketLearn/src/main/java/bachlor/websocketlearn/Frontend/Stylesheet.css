@@ -1,0 +1,12 @@
+.page{
+    display: grid;
+    justify-self: center;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    width: 10vh;
+    grid-template-areas: 
+         "out main out"
+}
+.main{
+    grid-area: main;
+}
