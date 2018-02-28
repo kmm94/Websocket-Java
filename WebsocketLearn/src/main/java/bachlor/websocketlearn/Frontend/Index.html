@@ -22,7 +22,7 @@
         ws.send(message);    
     }
     
-    var ws = new WebSocket('ws://localhost:8025/ws/hello');
+    var ws = new WebSocket('ws://localhost:8025/ws/chat');
     
     ws.onopen = function (event) {
         console.log("connection is ON")

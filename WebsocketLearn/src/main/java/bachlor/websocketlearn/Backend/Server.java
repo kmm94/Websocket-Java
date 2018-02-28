@@ -23,8 +23,8 @@ public class Server {
             TestEndpoint t = new TestEndpoint();
             System.out.println("enter 'q' to close the server...");
             while (!sc.nextLine().equals("q")) {
-                System.out.println("write to the server:");
-                t.sendMessage(sc.nextLine());
+                System.out.println("write to the all clinets:");
+                t.sendMessageToAll(sc.nextLine());
                 System.out.println("enter 'q' to close the server...");
             }
 
