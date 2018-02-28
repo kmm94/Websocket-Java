@@ -9,17 +9,31 @@
 
 <body class="page">
     <div class="main">
-        <h1>Skrive noget til serveren</h1>
+        <h1>Skrive noget til alle</h1>
         <input id="InputText" type="Text">
         <button onclick="sendTextToServer()">send</button>
-        </div>
+    </div>
+    <div class="setname">
+        <input id="Inputname" type="Text">
+        <button onclick="sendNameToServer()">send</button>
+    </div>
+    <textarea id="output" readonly="true">
+    </textarea>
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/json2/20160511/json2.js"></script>
 <script>
+    function sendNameToServer(){
+        var name = document.getElementById('Inputname').value;
+        var data = JSON.stringify({action: "name", name: name});
+        ws.send(data);
+        console.log('name sent');
+    }
+    
     function sendTextToServer(){
         var message = document.getElementById('InputText').value;
         document.getElementById('InputText').value = '';
         console.log('Sender: ' + message);
-        ws.send(message);    
+        ws.send(JSON.stringify({action: "msg", message: message}));    
     }
     
     var ws = new WebSocket('ws://localhost:8025/ws/chat');
@@ -30,7 +44,8 @@
     
     //handle incomming
     ws.onmessage = function (message){
-        console.log('You got mail: '+ message.data)
+        console.log('Recived: ' + message.data);
+        document.getElementById('output').append(message.data);
     }
     ws.close = function(){
         console.log('Disconnected');

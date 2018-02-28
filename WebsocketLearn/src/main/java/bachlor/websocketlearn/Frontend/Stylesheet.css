@@ -2,11 +2,18 @@
     display: grid;
     justify-self: center;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr;
-    width: 10vh;
+    grid-template-rows: 1fr 1fr;
     grid-template-areas: 
-         "out main out"
+         "sidebar1 main out"
+         "sidebar2 main2 out2"
 }
 .main{
     grid-area: main;
+}
+#output{
+    grid-area: out; 
+     
+}
+.setname{
+    grid-area: main2;
 }
