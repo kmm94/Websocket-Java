@@ -14,9 +14,12 @@ import javax.websocket.DeploymentException;
  */
 public class Server {
     
+    private static final String ADDRESS = "www.kikuku.tk";
+    private static final int PORT_NR = 8000;
+    
     public static void main(String[] args) {
         org.glassfish.tyrus.server.Server server
-                = new org.glassfish.tyrus.server.Server("localhost", 8025, "/ws", TestEndpoint.class);
+                = new org.glassfish.tyrus.server.Server(ADDRESS, PORT_NR, "/ws", TestEndpoint.class);
         try {
             server.start();
             Scanner sc = new Scanner(System.in);
