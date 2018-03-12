@@ -36,7 +36,7 @@
         ws.send(JSON.stringify({action: "msg", message: message}));    
     }
     
-    var ws = new WebSocket('ws://localhost:8025/ws/chat');
+    var ws = new WebSocket('ws://kikuku.tk:8000/ws/chat');
     
     ws.onopen = function (event) {
         console.log("connection is ON")

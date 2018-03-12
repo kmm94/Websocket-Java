@@ -14,7 +14,7 @@ import javax.websocket.DeploymentException;
  */
 public class Server {
     
-    private static final String ADDRESS = "www.kikuku.tk";
+    private static final String ADDRESS = "localhost";
     private static final int PORT_NR = 8000;
     
     public static void main(String[] args) {
