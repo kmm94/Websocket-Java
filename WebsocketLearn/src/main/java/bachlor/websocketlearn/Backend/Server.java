@@ -27,8 +27,8 @@ public class Server {
             TestEndpoint t = new TestEndpoint();
             while (isRunning) {
                 System.out.println("    ---- Main Menu ----");
-                System.out.println("Write 'q' to close the server...");
-                System.out.println("Write anything else to message the all clinets:");
+                System.out.println("Write 'q' to close the server.");
+                System.out.println("Write anything else to message the all clinets.");
                 String input = sc.nextLine();
                 if (input.equals("q")) {
                     System.out.println("**Terminating server**");
