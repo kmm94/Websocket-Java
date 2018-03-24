@@ -65,21 +65,21 @@ public class TestEndpoint {
         try {
             for (Client c : sessions.values()) {
                 if(c.getSession().isOpen())
-                c.getSession().getBasicRemote().sendText(message);
+                c.getSession().getBasicRemote().sendText( message);
             }
         } catch (IOException ex) {
-            Logger.getLogger(TestEndpoint.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex);
         }
     }
 
-    private void sendMessageToAllFromUser(String msg, Session session) {
+    private void sendMessageToAllFromUser(String msg, Session SenderSession) {
         try {
             for (Client c : sessions.values()) {
-                if(c.getSession().isOpen() && c.getSession() != session)
+                if(c.getSession().isOpen() && c.getSession() != SenderSession)
                 c.getSession().getBasicRemote().sendText(msg);
             }
         } catch (IOException ex) {
-            Logger.getLogger(TestEndpoint.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex);
         }
     }
 }

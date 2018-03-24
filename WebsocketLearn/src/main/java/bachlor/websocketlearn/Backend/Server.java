@@ -13,28 +13,37 @@ import javax.websocket.DeploymentException;
  * @author karim
  */
 public class Server {
-    
+
     private static final String ADDRESS = "localhost";
     private static final int PORT_NR = 8000;
-    
+
     public static void main(String[] args) {
+        boolean isRunning = true;
         org.glassfish.tyrus.server.Server server
                 = new org.glassfish.tyrus.server.Server(ADDRESS, PORT_NR, "/ws", TestEndpoint.class);
         try {
             server.start();
             Scanner sc = new Scanner(System.in);
             TestEndpoint t = new TestEndpoint();
-            System.out.println("enter 'q' to close the server...");
-            while (!sc.nextLine().equals("q")) {
-                System.out.println("write to the all clinets:");
-                t.sendMessageToAll(sc.nextLine());
-                System.out.println("enter 'q' to close the server...");
+            while (isRunning) {
+                System.out.println("    ---- Main Menu ----");
+                System.out.println("Write 'q' to close the server...");
+                System.out.println("Write anything else to message the all clinets:");
+                String input = sc.nextLine();
+                if (input.equals("q")) {
+                    System.out.println("**Terminating server**");
+                    isRunning = false;
+                } else {
+                    t.sendMessageToAll("\nMessage from server: " + input);
+                }
+
             }
 
         } catch (DeploymentException e) {
             throw new RuntimeException(e);
         } finally {
             server.stop();
+            System.out.println("---- Server is off ----");
         }
     }
 
